@@ -11,24 +11,18 @@ import (
 )
 
 type ScanReport struct {
-	Timestamp    int64             `json:"timestamp,omitempty"`
-	SSID         string            `json:"ssid,omitempty"`
-	BSSID        string            `json:"bssid"`
-	Capabilities string            `json:"capabilities,omitempty"`
-	Channel      string            `json:"channel,omitempty"`
-	FreqKHz      int               `json:"freqkhz,omitempty"`
-	Signal       int               `json:"signal,omitempty"`
-	Lat          float64           `json:"lat,omitempty"`
-	Lon          float64           `json:"lon,omitempty"`
-	Alt          float64           `json:"alt,omitempty"`
-	Spd          float64           `json:"spd,omitempty"`
-	Tags         map[string]string `json:"tags,omitempty"`
+	Reports    []ReportObject `json:"reports"`
+	SourceName string         `json:"source_name"`
+	SourceUUID string         `json:"source_uuid"`
 }
 
-type ScanPayload struct {
-	SourceName string       `json:"source_name"`
-	SourceUUID string       `json:"source_uuid"`
-	Reports    []ScanReport `json:"reports"`
+type ReportObject struct {
+	Timestamp int    `json:"timestamp"`
+	Ssid      string `json:"ssid"`
+	Bssid     string `json:"bssid"`
+	Channel   string `json:"channel"`
+	Frequency string `json:"freqkhz"`
+	Signal    string `json:"signal"`
 }
 
 const ESP32_BAUD_RATE = 115200
